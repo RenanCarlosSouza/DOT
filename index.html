@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOT - Higienização Profissional</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1 class="logo">DOT</h1>
+        <nav class="menu-navegacao">
+            <a href="#">Início</a>
+
+            <div class="dropdown">
+                <a href="#" class="dropbtn">Serviços <span class="seta">▼</span></a>
+                <div class="dropdown-content">
+                    <a href="#" onclick="abrirDetalhes(0)">Higienização de Colchões</a>
+                    <a href="#" onclick="abrirDetalhes(1)">Higienização de Tapetes</a>
+                    <a href="#" onclick="abrirDetalhes(2)">Limpeza de Placas Solares</a>
+                    <a href="#" onclick="abrirDetalhes(3)">Higienização de Cortinas</a>
+                    <a href="#" onclick="abrirDetalhes(4)">Limpeza de Caixa D’água</a>
+                    <a href="#" onclick="abrirDetalhes(5)">Higienização de Sofás</a>
+                </div>
+            </div>
+
+            <a href="#" onclick="abrirSobreNos()">Sobre Nós</a>
+            <button class="btn-nav-login" onclick="abrirLogin()">Entrar</button>
+            <button class="btn-nav-cad" onclick="abrirCadastro()">Cadastre-se</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-bg">
+            <div class="overlay-claro"></div>
+            <div class="conteudo-hero">
+                <h2>Desenvolvendo Ótimo Trabalho.</h2>
+            </div>
+        </section>
+
+        <section class="cards-container">
+            <div class="card" onclick="abrirDetalhes(0)">
+                <img src="img/colchao.jpeg"
+                    alt="Higienização de Colchões" class="card-img">
+                <div class="card-texto">Higienização de Colchões</div>
+            </div>
+
+            <div class="card" onclick="abrirDetalhes(1)">
+                <img src="img/tapete.jpeg"
+                    alt="Higienização de Tapetes" class="card-img">
+                <div class="card-texto">Higienização de Tapetes</div>
+            </div>
+
+            <div class="card" onclick="abrirDetalhes(2)">
+                <img src="img/solar.jpeg"
+                    alt="Limpeza de Placas Solares" class="card-img">
+                <div class="card-texto">Limpeza de Placas Solares</div>
+            </div>
+
+            <div class="card" onclick="abrirDetalhes(3)">
+                <img src="img/cortina.jpeg"
+                    alt="Higienização de Cortinas" class="card-img">
+                <div class="card-texto">Higienização de Cortinas</div>
+            </div>
+
+            <div class="card" onclick="abrirDetalhes(4)">
+                <img src="img/caixa.jpeg"
+                    alt="Limpeza de Caixa D’água" class="card-img">
+                <div class="card-texto">Limpeza de Caixa D’água</div>
+            </div>
+
+            <div class="card" onclick="abrirDetalhes(5)">
+                <img src="img/sofa.jpeg"
+                    alt="Higienização Profissional de Sofás" class="card-img">
+                <div class="card-texto">Higienização Profissional de Sofás</div>
+            </div>
+        </section>
+    </main>
+
+    <div id="modal-details" class="modal">
+        <div class="modal-content">
+            <span class="btn-fechar" onclick="fecharModal('modal-details')">&times;</span>
+            <h2 id="detalhe-titulo">Nome do Serviço</h2>
+            <ul id="detalhe-beneficios" class="lista-beneficios"></ul>
+            <div class="secao-avaliacoes">
+                <h3>Avaliações</h3>
+                <div id="detalhe-nota" class="nota-geral">⭐ 4.8 (0 avaliações)</div>
+                <div id="detalhe-comentarios" class="lista-comentarios"></div>
+            </div>
+            <button class="btn-azul" style="width: 100%; margin-top: 1rem;" onclick="solicitarOrcamento()">Solicitar
+                Orçamento</button>
+        </div>
+    </div>
+
+    <div id="modal-acesso" class="modal">
+        <div class="modal-content">
+            <span class="btn-fechar" onclick="fecharModal('modal-acesso')">&times;</span>
+            <h2>Acesso Necessário</h2>
+            <p>Para solicitar seu orçamento, faça login ou crie uma conta rapidamente.</p>
+            <div class="modal-botoes">
+                <button class="btn-azul flex-1" onclick="abrirLogin()">Login</button>
+                <button class="btn-cinza flex-1" onclick="abrirCadastro()">Cadastre-se</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-login" class="modal">
+        <div class="modal-content">
+            <span class="btn-fechar" onclick="fecharModal('modal-login')">&times;</span>
+            <h2>Fazer Login</h2>
+            <form onsubmit="processarAcesso(event)">
+                <div class="input-group">
+                    <label>E-mail</label>
+                    <input type="email" placeholder="Digite seu e-mail" required>
+                </div>
+                <div class="input-group">
+                    <label>Senha</label>
+                    <input type="password" placeholder="Sua senha" required>
+                </div>
+                <button type="submit" class="btn-azul" style="width: 100%;">Entrar</button>
+                <p class="trocar-tela">Não tem uma conta? <span onclick="abrirCadastro()">Cadastre-se</span></p>
+            </form>
+        </div>
+    </div>
+
+    <div id="modal-cadastro" class="modal">
+        <div class="modal-content">
+            <span class="btn-fechar" onclick="fecharModal('modal-cadastro')">&times;</span>
+            <h2>Criar Conta</h2>
+            <form onsubmit="processarAcesso(event)">
+                <div class="input-group">
+                    <label>Nome Completo</label>
+                    <input type="text" placeholder="Seu nome" required>
+                </div>
+                <div class="input-group">
+                    <label>E-mail</label>
+                    <input type="email" placeholder="Seu e-mail" required>
+                </div>
+                <div class="input-group">
+                    <label>Senha</label>
+                    <input type="password" placeholder="Crie uma senha" required>
+                </div>
+                <button type="submit" class="btn-azul" style="width: 100%;">Cadastrar</button>
+                <p class="trocar-tela">Já tem uma conta? <span onclick="abrirLogin()">Faça Login</span></p>
+            </form>
+        </div>
+    </div>
+
+    <div id="modal-sobre" class="modal">
+        <div class="modal-content modal-sobre-content">
+            <span class="btn-fechar" onclick="fecharModal('modal-sobre')">&times;</span>
+            <h2>Sobre Nós</h2>
+            <div class="texto-sobre">
+                <p>Somos um site especializado em higienização e limpeza profissional, comprometida em oferecer serviços
+                    de qualidade, segurança e excelência para nossos clientes. Atuamos com técnicas modernas e produtos
+                    adequados para garantir a limpeza, conservação e bem-estar dos ambientes residenciais e comerciais.
+                </p>
+                <p>Temos profissionais treinados para realizar serviços de higienização de sofás, colchões, tapetes,
+                    cortinas, cadeiras, estofados em geral, limpeza de placas solares e higienização de caixas d’água,
+                    sempre com atenção aos detalhes e foco na satisfação do cliente.</p>
+                <p>Acreditamos que ambientes limpos e bem cuidados proporcionam mais conforto, saúde e qualidade de
+                    vida. Por isso, trabalhamos com responsabilidade, pontualidade e transparência em cada atendimento,
+                    buscando superar as expectativas e construir relações de confiança duradouras.</p>
+                <p>Nossa missão é oferecer soluções eficientes de higienização e limpeza, contribuindo para a
+                    preservação do patrimônio de nossos clientes e para a criação de ambientes mais saudáveis e
+                    agradáveis.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-agendamento" class="modal">
+        <div class="modal-content">
+            <span class="btn-fechar" onclick="fecharModal('modal-agendamento')">&times;</span>
+            <h2>Solicitar Orçamento</h2>
+
+            <form id="form-agendamento" onsubmit="finalizarAgendamento(event)">
+                <p style="margin-bottom: 1.5rem; color: #666; font-size: 0.95rem;">Preencha os detalhes abaixo para
+                    receber seu orçamento.</p>
+                <div class="input-group">
+                    <label>Serviço Desejado</label>
+                    <select id="select-servico" required>
+                        <option value="">Selecione um serviço...</option>
+                        <option value="Higienização de Colchões">Higienização de Colchões</option>
+                        <option value="Higienização de Tapetes">Higienização de Tapetes</option>
+                        <option value="Limpeza de Placas Solares">Limpeza de Placas Solares</option>
+                        <option value="Higienização de Cortinas">Higienização de Cortinas</option>
+                        <option value="Limpeza de Caixa D’água">Limpeza de Caixa D’água</option>
+                        <option value="Higienização Profissional de Sofás">Higienização Profissional de Sofás</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Data de Preferência</label>
+                    <input type="date" required>
+                </div>
+                <button type="submit" class="btn-azul" style="width: 100%;">Confirmar Solicitação</button>
+            </form>
+
+            <div id="mensagem-sucesso" class="mensagem-sucesso">
+                <div class="icone-sucesso">✔️</div>
+                <h3>Solicitação Enviada!</h3>
+                <p>Nossa equipe entrará em contato em breve com o seu orçamento.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
